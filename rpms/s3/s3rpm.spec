@@ -404,6 +404,7 @@ echo "[cortx-s3server-rpm] INFO: S3 RPM Clean section completed"
 /opt/seagate/cortx/s3/s3backgrounddelete/s3backgrounddelete_unsafe_attributes.yaml
 /opt/seagate/cortx/s3/s3backgrounddelete/s3_cluster_unsafe_attributes.yaml
 /opt/seagate/cortx/s3/mini-prov/s3setup_prereqs.json
+/opt/seagate/cortx/s3/mini-prov/s3_elasticsearch_mappings.json
 /opt/seagate/cortx/s3/mini-prov/s3_prov_config.yaml
 /opt/seagate/cortx/s3/bin/setupcmd.py
 /opt/seagate/cortx/s3/bin/postinstallcmd.py

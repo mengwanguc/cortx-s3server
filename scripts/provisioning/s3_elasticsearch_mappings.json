@@ -1,0 +1,191 @@
+{
+    "mappings" : {
+        "s3-rsys-index" : {
+            "properties" : {
+                "authentication_type" : {
+                    "type" : "keyword",
+                     "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "bucket" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                                "ignore_above" : 256
+                        }
+                    }
+                },
+                "bucket_owner" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "bytes_received" : {
+                    "type" : "long"
+                },
+                "bytes_sent" : {
+                    "type" : "long"
+                },
+                "cipher_suite" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "error_code" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "host_header" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                 },
+                "host_id" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "http_status" : {
+                    "type" : "long"
+                },
+                "key" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "object_size" : {
+                    "type" : "long"
+                },
+                "operation" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "referrer" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "remote_ip" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "request_id" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "request_uri" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "requester" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "signature_version" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "time" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                            }
+                    }
+                },
+                "timestamp" : {
+                    "type" : "date"
+                },
+                 "total_time" : {
+                    "type" : "long"
+                },
+                "turn_around_time" : {
+                    "type" : "long"
+                },
+                "user_agent" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                },
+                "version_id" : {
+                    "type" : "keyword",
+                    "fields" : {
+                        "keyword" : {
+                            "type" : "keyword",
+                            "ignore_above" : 256
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

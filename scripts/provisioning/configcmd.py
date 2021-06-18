@@ -22,6 +22,7 @@ import sys
 import os
 import errno
 import shutil
+import pycurl
 from pathlib import Path
 from  ast import literal_eval
 
@@ -80,6 +81,10 @@ class ConfigCmd(SetupCmd):
                           bgdeleteconfig.get_msgbus_topic(),
                           self.get_msgbus_partition_count())
         self.logger.info('Create topic completed')
+      
+      self.logger.info('Create s3-rsys-index and mappings in elasticsearch started')
+      self.create_s3_elasticsearch_mappings()
+      self.logger.info('Create s3-rsys-index and mappings in elasticsearch completed')
     except Exception as e:
       raise S3PROVError(f'process() failed with exception: {e}')
 
@@ -240,3 +245,22 @@ class ConfigCmd(SetupCmd):
     else:
       self.logger.warning(f'warning of create_auth_jks_password.sh: {stderr}')
       self.logger.info(' Successfully set auth JKS keystore password.')
+
+  def create_s3_elasticsearch_mappings(self):
+    """Creates s3-rsys-index and mappings in elasticsearch"""
+    try:
+      s3_elasticsearch_mappings_json = open('/opt/seagate/cortx/s3/mini-prov/s3_elasticsearch_mappings.json')
+      try:
+        pycurl_connect = pycurl.Curl()
+        pycurl_connect.setopt(pycurl_connect.URL,'http://localhost:9200/s3-rsys-index')
+        pycurl_connect.setopt(pycurl_connect.HTTPHEADER, ['Content-Type: application/json'])
+        pycurl_connect.setopt(pycurl_connect.PUT,1)
+        pycurl_connect.setopt(pycurl_connect.READDATA,s3_elasticsearch_mappings_json)
+        pycurl_connect.perform()
+        self.logger.info(' Successfully created s3-rsys-index and mappings in elasticsearch')
+      except Exception as e:
+        self.logger.error(f'error of mapping creation: {stderr}')
+        raise e
+    except Exception as e:
+      self.logger.error(f'error of s3_mappings.json: {stderr}')
+      raise e

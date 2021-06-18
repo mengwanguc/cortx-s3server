@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-#
-# Copyright (c) 2020 Seagate Technology LLC and/or its Affiliates
+opyright (c) 2020 Seagate Technology LLC and/or its Affiliates
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +20,7 @@ import sys
 import os
 from pathlib import Path
 import shutil
+import pycurl
 
 from setupcmd import SetupCmd, S3PROVError
 from ldapaccountaction import LdapAccountAction
@@ -121,6 +120,11 @@ class CleanupCmd(SetupCmd):
       self.logger.info('revert s3 config files started')
       self.revert_config_files()
       self.logger.info('revert s3 config files completed')
+
+      # Delete s3 elasticsearch index and mappings
+      self.logger.info('Deleting s3 elasticsearch index and mappings started')
+      self.delete_s3_mappings_from_elasticsearch()
+      self.logger.info('Deleting s3 elasticsearch index and mappings completed')
 
       try:
         self.logger.info("Stopping slapd service...")
@@ -277,5 +281,16 @@ class CleanupCmd(SetupCmd):
         S3CortxMsgBus.delete_topic(admin_id, [topic_name])
       else:
         self.logger.info("Topic does not exist")
+    except Exception as e:
+      raise e
+
+  def delete_s3_mappings_from_elasticsearch(self):
+    "Delete s3-rsys-index and mappings from elasticsearch"
+    try:
+      pycurl_connect = pycurl.Curl()
+      pycurl_connect.setopt(pycurl_connect.URL,'http://localhost:9200/s3-rsys-index')
+      pycurl_connect.setopt(pycurl_connect.CUSTOMREQUEST, "DELETE")
+      pycurl_connect.perform()
+      self.logger.info("s3-rsys-index and mappings deleted from elasticsearch")
     except Exception as e:
       raise e
